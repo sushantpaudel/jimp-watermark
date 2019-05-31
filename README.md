@@ -1,4 +1,4 @@
-a# jimp-watermark
+# jimp-watermark
 A powerful watermark library based on Jimp for node.js. This can be used to overlay a "image" watermark in another image.
 
 ### Installation
@@ -10,15 +10,16 @@ A powerful watermark library based on Jimp for node.js. This can be used to over
 ```javascript
 var watermark = require('jimp-watermark');
 
-watermark.embedWatermark('/path/to/image/file','/path/to/image/watermark', options);
+watermark.addWatermark('/path/to/image/file','/path/to/image/watermark', options);
 ```
 
 ### API
 
 #### addWatermark(imageSource, watermarkSource, options)
 
-API to embed watermark in given image/pdf. It takes two arguments : 
-1. path of the image and 
+API to overlay watermark in given image. It takes three arguments : 
+1. path of the image
+2. path of the watermark
 2. options object. This argument is optional
 
 
@@ -54,18 +55,9 @@ var options = {
     'opacity': 0.6, //Should be less than one
     'dstPath' : './watermark.jpg'
 };
-watermark.embedWatermark('\home\user\sample.jpg', options);
+watermark.addWatermark('./img/main.jpg', './img/logo.png',options);
 
-//
-// Options to specify color of watermark text
-//
-var watermark = require('jimp-watermark');
-var options = {
-	'text' : 'sample watermark', 
-	'color' : 'rgb(154, 50, 46)'
-};
-watermark.embedWatermark('./img/main.jpg', './img/logo.png', options);
-
+```
 ### Inspiration
 [https://github.com/luthraG/image-watermark](https://github.com/luthraG/image-watermark)
 
