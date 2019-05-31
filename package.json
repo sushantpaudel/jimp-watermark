@@ -1,0 +1,27 @@
+{
+  "name": "jimp-watermark",
+  "version": "1.0.0",
+  "description": "This is a library to add image watermark to an image.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.test.js"
+  },
+  "keywords": [
+    "watermark",
+    "jimp",
+    "image watermark",
+    "add watermark"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sushantpaudel/jimp-watermark.git"
+  },
+  "author": {
+    "name": "Sushant Paudel",
+    "email": "paudelsushant482@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jimp": ""
+  }
+}
