@@ -1,6 +1,6 @@
 {
   "name": "jimp-watermark",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a library to add image watermark to an image.",
   "main": "index.js",
   "scripts": {
