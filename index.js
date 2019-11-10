@@ -46,7 +46,7 @@ module.exports.addWatermark = async (mainImage, watermarkImage, options) => {
             positionX,
             positionY,
             Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
-        main.quality(100).write(options.dstPath);
+        await main.quality(100).writeAsync(options.dstPath);
         return {
             destinationPath: options.dstPath,
             imageHeight: main.getHeight(),
