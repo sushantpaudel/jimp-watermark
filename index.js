@@ -115,3 +115,54 @@ module.exports.addWatermark = async (mainImage, watermarkImage, options) => {
     }
 }
 
+
+
+/**
+ * @param {String} mainImage - Path of the image to be watermarked
+ * @param {Object} options
+ * @param {String} options.text     - String to be watermarked
+ * @param {Number} options.textSize - Text size ranging from 1 to 8
+ * @param {String} options.dstPath  - Destination path where image is to be exported
+ */
+module.exports.addTextWithImageWatermark = async (mainImage, watermarkImage, options) => {
+    try {
+        options = checkOptions(options);
+        const main = await Jimp.read(mainImage);
+        const maxHeight = main.getHeight();
+        const maxWidth = main.getWidth();
+        if (Object.keys(SizeEnum).includes(String(options.textSize))) {
+            const font = await Jimp.loadFont(SizeEnum[options.textSize]);
+            const X = 0,        //Always center aligned
+                Y = 0
+            const finalImage = await main.print(font, X, Y, {
+                text: options.text,
+                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+                alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
+            }, maxWidth, maxHeight);
+            finalImage.quality(100).write(options.dstPath);
+
+            // image
+            const watermark = await Jimp.read(watermarkImage);
+            const [newHeight, newWidth] = getDimensions(main.getHeight(), main.getWidth(), watermark.getHeight(), watermark.getWidth(), options.ratio);
+            watermark.resize(newWidth, newHeight);
+            const positionX = (main.getWidth() - newWidth) / 2;     //Centre aligned
+            const positionY = (main.getHeight() - newHeight) / 2;   //Centre aligned
+            watermark.opacity(options.opacity);
+            main.composite(watermark,
+                positionX,
+                positionY,
+                Jimp.HORIZONTAL_ALIGN_CENTER | Jimp.VERTICAL_ALIGN_MIDDLE);
+            main.quality(100).write(options.dstPath);
+
+            return {
+                destinationPath: options.dstPath,
+                imageHeight: main.getHeight(),
+                imageWidth: main.getWidth(),
+            };
+        } else {
+            throw ErrorTextSize;
+        }
+    } catch (err) {
+        throw err;
+    }
+}
