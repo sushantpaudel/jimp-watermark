@@ -61,7 +61,41 @@ watermark.addWatermark('./img/main.jpg', './img/logo.png', options);
 
 ```
 
-#### addTextWatermark(imageSource, options)
+#### addTextWithImageWatermark(imageSource,watermarkSource, options)
+
+API to overlay watermark in given image and text. It takes two arguments : 
+1. path of the image
+2. watermark image
+3. options object. This argument is optional
+
+
+**Options**
+
+Various options supported by this API are :
+- **text** - To specify the text to be overlaid on the main image.
+- **textSize** - To specify size of text over the main image, value ranged from 1 to 8.
+- **dstPath** - To specify the output path. Default is 'watermark.{sourceFile ext}'.
+
+**Example**
+
+```javascript
+
+var watermark = require('jimp-watermark');
+var options = {
+	'ratio': 0.6,// Should be less than one
+    'opacity': 0.6, //Should be less than one
+    dstPath: "/img/sourceImage.jpg", // same destination path to override
+};
+
+watermark.addTextWithImageWatermark('./img/sourceImage.jpg','./img/watermarkImage.png',options).then(data => {
+    console.log(data);
+}).catch(err => {
+    console.log(err);
+});
+```
+
+
+#### addTextWithWatermark(imageSource, options)
 
 API to overlay watermark in given image. It takes two arguments : 
 1. path of the image
