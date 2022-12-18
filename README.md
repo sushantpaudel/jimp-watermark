@@ -32,6 +32,7 @@ Various options supported by this API are :
 - **opacity** - To specify color of watermark text. Default is 'Grey'.
 - **dstPath** - To specify the output path. Default is 'watermark.{sourceFile ext}'.
 - **location** - To specify the location of watermark. Default is 'center'.
+
 Possible values for location : 'top-left', 'top-center', 'top-right', 'center-left', 'center', 'center-right', 'bottom-left', 'bottom-center', 'bottom-right'
 
 **Example**
