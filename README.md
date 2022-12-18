@@ -31,6 +31,9 @@ Various options supported by this API are :
 - **ratio** - To specify watermark text. Default is 'Sample watermark'.
 - **opacity** - To specify color of watermark text. Default is 'Grey'.
 - **dstPath** - To specify the output path. Default is 'watermark.{sourceFile ext}'.
+- **location** - To specify the location of watermark. Default is 'center'.
+
+Possible values for location : 'top-left', 'top-center', 'top-right', 'center-left', 'center', 'center-right', 'bottom-left', 'bottom-center', 'bottom-right'
 
 **Example**
 
@@ -53,9 +56,10 @@ watermark.addWatermark('./img/main.jpg', './img/logo.png').then(data => {
 //
 var watermark = require('jimp-watermark');
 var options = {
-	'ratio': 0.6,// Should be less than one
+    'ratio': 0.6,// Should be less than one
     'opacity': 0.6, //Should be less than one
-    'dstPath' : './watermark.jpg'
+    'dstPath' : './watermark.jpg',
+    'location' : 'center'
 };
 watermark.addWatermark('./img/main.jpg', './img/logo.png', options);
 
@@ -96,9 +100,10 @@ watermark.addTextWatermark('./img/main.jpg').then(data => {
 //
 var watermark = require('jimp-watermark');
 var options = {
-	'text': 'watermark-test',
+    'text': 'watermark-test',
     'textSize': 6, //Should be between 1-8
-    'dstPath' : './watermark.jpg'
+    'dstPath' : './watermark.jpg',
+    'location' : 'center'
 };
 watermark.addTextWatermark('./img/main.jpg', options);
 ```
