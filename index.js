@@ -175,14 +175,10 @@ module.exports.addWatermark = async (mainImage, watermarkImage, options) => {
         const [newHeight, newWidth] = getDimensions(main.getHeight(), main.getWidth(), watermark.getHeight(), watermark.getWidth(), options.ratio);
         watermark.resize(newWidth, newHeight);
 
-        // TO BE CHANGED
         const location = locationSet(options.location);
         const positionX = location.x === Jimp.HORIZONTAL_ALIGN_LEFT ? 0 : location.x === Jimp.HORIZONTAL_ALIGN_CENTER ? (main.getWidth() - newWidth) / 2 : main.getWidth() - newWidth;
         const positionY = location.y === Jimp.VERTICAL_ALIGN_TOP ? 0 : location.y === Jimp.VERTICAL_ALIGN_MIDDLE ? (main.getHeight() - newHeight) / 2 : main.getHeight() - newHeight;
-        /* 
-        const positionX = (main.getWidth() - newWidth) / 2;     //Centre aligned
-        const positionY = (main.getHeight() - newHeight) / 2;   //Centre aligned
-        */
+
         watermark.opacity(options.opacity);
         main.composite(watermark,
             positionX,
