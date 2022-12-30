@@ -68,7 +68,7 @@ module.exports.addTextWatermark = async (mainImage, options) => {
                 alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
                 alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
             }, maxWidth, maxHeight);
-            finalImage.quality(100).write(options.dstPath);
+            await finalImage.quality(100).writeAsync(options.dstPath);
             return {
                 destinationPath: options.dstPath,
                 imageHeight: main.getHeight(),
